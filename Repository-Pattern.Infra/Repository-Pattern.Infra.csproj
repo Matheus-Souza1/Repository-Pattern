@@ -5,4 +5,12 @@
     <RootNamespace>Repository_Pattern.Infra</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.90" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Repository-Pattern.Domain\Repository-Pattern.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
