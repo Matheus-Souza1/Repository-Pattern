@@ -33,10 +33,19 @@ namespace Repository_Pattern
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Repository_Pattern", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo {
+                    Title = "Repository_Pattern",
+                    Version = "v1",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Matheus Souza",
+                        Email = "matheussouzaslv2@gmail.com",
+                        Url = new Uri("https://github.com/Matheus-Souza1")
+                    }
+                });
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                //c.IncludeXmlComments(xmlPath);
+                c.IncludeXmlComments(xmlPath);
             });
         }
 

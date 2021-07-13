@@ -18,6 +18,13 @@ namespace Repository_Pattern.Controllers
             _employerRepository = employerRepository;
         }
 
+        /// <summary>
+        /// Retorna todos os usuario
+        /// </summary>
+        /// <returns>Objeto de detalhes do usuario</returns>
+        /// <response code="404">Usuario não encontrado</response>
+        /// <response code="200">Usuario encontrado</response>
+
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetEmployer()
@@ -26,6 +33,13 @@ namespace Repository_Pattern.Controllers
             return Ok(employer);
         }
 
+        /// <summary>
+        /// Retornar detalhes de um usuario
+        /// </summary>
+        /// <param name="id">Identificador de usuario</param>
+        /// <returns>Objeto de detalhes do usuario</returns>
+        /// <response code="404">Usuario não encontrado</response>
+        /// <response code="200">Usuario encontrado</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByIdEmployer(Guid id)
@@ -33,6 +47,22 @@ namespace Repository_Pattern.Controllers
             var employer = await _employerRepository.GetById(id);
             return Ok(employer);
         }
+
+        /// <summary>
+        /// Cadastrar um usuário
+        /// </summary>
+        /// <remarks>
+        /// Requisição de exemplo: 
+        ///{
+        /// "name":"Teste",
+        /// "email":Teste@email,
+        /// "document":00000
+        /// }
+        /// </remarks>
+        /// <param name="employer">Objeto com dados de cadastro de Usuário</param>
+        /// <returns>Objeto recém-criado.</returns>
+        /// <response code="201">Objeto criado com sucesso.</response>
+        /// <response code="400">Dados inválidos.</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -49,6 +79,22 @@ namespace Repository_Pattern.Controllers
             return Ok(_employer);
         }
 
+        /// <summary>
+        /// Atualizar dados do usuario
+        /// </summary>
+        /// <remarks>
+        /// Requisição de exemplo: 
+        ///{
+        /// "name":"Teste",
+        /// "email":Teste@email,
+        /// "document":00000
+        /// }
+        /// </remarks>
+        /// <param name="id">Identificador de usuario</param>
+        /// <param name="employer">Objeto com dados de atualização do Usuário</param>
+        /// <returns>Objeto Atualizado</returns>
+        /// <response code="201">Objeto atualizado com sucesso.</response>
+        /// <response code="400">Dados inválidos.</response>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> UpdateEmployer([FromBody]Employer employer, Guid id)
@@ -66,6 +112,13 @@ namespace Repository_Pattern.Controllers
             return Ok(_employer);
         }
 
+        /// <summary>
+        /// Deletar um usuario
+        /// </summary>
+        /// <param name="id">Identificador do usuario</param>
+        /// <returns>Usuario deletado</returns>
+        /// <response code="204">Objeto deletado com sucesso.</response>
+        /// <response code="400">Dados inválidos.</response>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult DeleteEmployer(Guid id)
